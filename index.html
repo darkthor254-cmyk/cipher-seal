@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher &amp; Seal — private messages, encrypted in your browser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" style="text-decoration:none; color:inherit;">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="var(--brass)" stroke-width="1.6"/>
+        <circle cx="20" cy="20" r="12.5" stroke="var(--brass)" stroke-width="1" opacity="0.55"/>
+        <path d="M20 12 L20 20 L25.5 24.5" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="20" r="1.6" fill="var(--brass)"/>
+      </svg>
+      <span class="brand-name">Cipher<em>&amp;</em>Seal</span>
+    </a>
+    <div class="topbar-right">
+      <nav class="tabs" aria-label="Site sections">
+        <a href="index.html" class="active">Home</a>
+        <a href="encrypt.html">Encrypt</a>
+        <a href="decrypt.html">Decrypt</a>
+        <a href="about.html">About</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Browser-only AES-256-GCM</div>
+        <h1>Say it plainly.<br>Send it <span>sealed</span>.</h1>
+        <p class="lede">Type a message, choose a secret key, and get back cipher text that only someone with that same key can open. Nothing is ever sent to a server — the locking and unlocking happen right here, on this page.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="encrypt.html">Encrypt a message →</a>
+          <a class="btn btn-ghost" href="decrypt.html">Decrypt a message</a>
+        </div>
+      </div>
+      <svg class="hero-dial" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a rotating combination dial">
+        <circle cx="150" cy="150" r="120" stroke="var(--border)" stroke-width="1.5"/>
+        <g id="dialTicks" style="transform-origin:150px 150px;">
+          <g id="ticksGroup"></g>
+        </g>
+        <circle cx="150" cy="150" r="86" stroke="var(--brass-dim)" stroke-width="1"/>
+        <circle cx="150" cy="150" r="58" fill="var(--surface)" stroke="var(--brass)" stroke-width="1.4"/>
+        <g id="dialArrow" style="transform-origin:150px 150px;">
+          <path d="M150 150 L150 100" stroke="var(--brass)" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="150" cy="100" r="4" fill="var(--brass)"/>
+        </g>
+        <circle cx="150" cy="150" r="5" fill="var(--brass-bright)"/>
+      </svg>
+    </div>
+
+    <div class="manifest">
+      <h2>What's on board</h2>
+      <div class="manifest-grid">
+        <div class="manifest-item"><span class="stamp">◆</span><h3>AES-256-GCM</h3><p>Authenticated encryption via the browser's native Web Crypto API — the wrong key fails loudly, it never returns garbage text.</p></div>
+        <div class="manifest-item"><span class="stamp">◆</span><h3>PBKDF2 key stretching</h3><p>Your passphrase is run through 150,000 rounds of PBKDF2 with a fresh random salt every time, not used as a raw key.</p></div>
+        <div class="manifest-item"><span class="stamp">◆</span><h3>Zero server contact</h3><p>No backend, no database, no logs. The plaintext and the key never leave this browser tab.</p></div>
+        <div class="manifest-item"><span class="stamp">◆</span><h3>QR handoff</h3><p>Turn cipher text into a QR code for handing off a message in person, no copy-paste needed.</p></div>
+        <div class="manifest-item"><span class="stamp">◆</span><h3>Key generator</h3><p>Not confident in your own passphrase? Generate a strong random one with a tap.</p></div>
+        <div class="manifest-item"><span class="stamp">◆</span><h3>.txt in and out</h3><p>Download cipher text as a file, or upload one straight into the decrypt box.</p></div>
+      </div>
+    </div>
+
+    <div class="how">
+      <h2>How a message travels</h2>
+      <div class="how-flow">
+        <div class="how-step"><div class="k">01 — sender</div><p>Write the message and choose a secret key.</p></div>
+        <div class="how-step"><div class="k">02 — this page</div><p>Derives a key from the passphrase and encrypts with AES-256-GCM.</p></div>
+        <div class="how-step"><div class="k">03 — handoff</div><p>Cipher text travels over WhatsApp, email, or a QR code — the key travels another way.</p></div>
+        <div class="how-step"><div class="k">04 — receiver</div><p>Pastes the cipher text, enters the same key, reads the message.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>cipher &amp; seal — encrypted locally, always</span>
+    <span id="clockTag"></span>
+  </div>
+</footer>
+
+<script src="js/utils.js"></script>
+</body>
+</html>

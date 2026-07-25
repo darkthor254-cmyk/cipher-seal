@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Cipher &amp; Seal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" style="text-decoration:none; color:inherit;">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="var(--brass)" stroke-width="1.6"/>
+        <circle cx="20" cy="20" r="12.5" stroke="var(--brass)" stroke-width="1" opacity="0.55"/>
+        <path d="M20 12 L20 20 L25.5 24.5" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="20" r="1.6" fill="var(--brass)"/>
+      </svg>
+      <span class="brand-name">Cipher<em>&amp;</em>Seal</span>
+    </a>
+    <div class="topbar-right">
+      <nav class="tabs" aria-label="Site sections">
+        <a href="index.html">Home</a>
+        <a href="encrypt.html">Encrypt</a>
+        <a href="decrypt.html">Decrypt</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="page active" id="page-about">
+    <div class="panel-head">
+      <div class="eyebrow">About</div>
+      <h1>What's actually happening</h1>
+    </div>
+    <div class="about-body">
+      <p>Cipher &amp; Seal encrypts and decrypts entirely inside your browser tab using the <strong>Web Crypto API</strong>, which is built into every modern browser and never touches a server. There is no backend here, no database, and no account — this site could be hosted anywhere, or opened straight from disk, and encryption would still work.</p>
+
+      <h2>How the key is derived</h2>
+      <p>Your passphrase is never used directly as an encryption key. Instead, it's stretched through <strong>PBKDF2</strong> with SHA-256, 150,000 iterations, and a fresh random 16-byte salt generated for every message. That salt travels along with the cipher text so the receiver's browser can rebuild the same key from the same passphrase — but it makes guessing the key by brute force far slower for an attacker.</p>
+
+      <h2>Why decryption fails loudly</h2>
+      <p>AES-GCM is an <em>authenticated</em> cipher. Bundled with the cipher text is an authentication tag that only matches if the correct key was used and nothing was altered in transit. Enter the wrong key, or a corrupted cipher text, and decryption stops with "Invalid secret key or corrupted message" — it never silently hands back nonsense.</p>
+
+      <h2>On the roadmap</h2>
+      <ul class="roadmap">
+        <li>One-time, self-destructing messages</li>
+        <li>Expiring share links</li>
+        <li>Passphrase hints that don't reveal the key itself</li>
+        <li>File encryption for PDFs, images, and archives</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>cipher &amp; seal — encrypted locally, always</span>
+    <span id="clockTag"></span>
+  </div>
+</footer>
+
+<script src="js/utils.js"></script>
+</body>
+</html>

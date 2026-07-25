@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encrypt a message — Cipher &amp; Seal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" style="text-decoration:none; color:inherit;">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="var(--brass)" stroke-width="1.6"/>
+        <circle cx="20" cy="20" r="12.5" stroke="var(--brass)" stroke-width="1" opacity="0.55"/>
+        <path d="M20 12 L20 20 L25.5 24.5" stroke="var(--brass)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="20" r="1.6" fill="var(--brass)"/>
+      </svg>
+      <span class="brand-name">Cipher<em>&amp;</em>Seal</span>
+    </a>
+    <div class="topbar-right">
+      <nav class="tabs" aria-label="Site sections">
+        <a href="index.html">Home</a>
+        <a href="encrypt.html" class="active">Encrypt</a>
+        <a href="decrypt.html">Decrypt</a>
+        <a href="about.html">About</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="page active" id="page-encrypt">
+    <div class="panel-head">
+      <div class="eyebrow">Encrypt</div>
+      <h1>Seal a message</h1>
+      <p>Everything below happens in your browser. Share the cipher text through any channel you like — just send the secret key a different way.</p>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <div class="field-label"><label for="encMessage">Message</label><span class="field-hint" id="encCharCount">0 characters</span></div>
+        <textarea id="encMessage" placeholder="Meet me at 8 PM."></textarea>
+      </div>
+
+      <div class="field">
+        <div class="field-label"><label for="encKey">Secret key</label></div>
+        <div class="key-row">
+          <input class="keyinput" id="encKey" type="password" placeholder="A long, unique passphrase" autocomplete="off">
+          <button class="icon-btn" id="encKeyToggle" aria-label="Show secret key" title="Show/hide">👁</button>
+          <button class="icon-btn" id="encKeyRandom" aria-label="Generate random secret key" title="Generate random key">⚄</button>
+        </div>
+        <div class="strength"><div class="strength-bar" id="strengthBar"></div></div>
+        <div class="strength-label" id="strengthLabel">Enter a key to see its strength</div>
+      </div>
+
+      <div class="action-row" style="margin-top:22px;">
+        <button class="btn btn-primary btn-full" id="encryptBtn">Encrypt message</button>
+      </div>
+
+      <div class="status" id="encStatus"></div>
+
+      <div class="output-block" id="encOutputBlock">
+        <div class="output-head">
+          <div class="field-label" style="margin:0;"><label>Encrypted text</label></div>
+          <span class="seal"><span class="dot"></span>sealed</span>
+        </div>
+        <textarea id="encOutput" readonly></textarea>
+        <div class="output-actions">
+          <button class="small-btn" id="copyEncOutput">📋 Copy</button>
+          <button class="small-btn" id="downloadEncOutput">⬇ Download .txt</button>
+          <button class="small-btn" id="qrEncOutput">▦ Show QR code</button>
+        </div>
+        <div id="qrHolder"></div>
+      </div>
+    </div>
+
+    <div class="tips-card">
+      <h3>Before you send it</h3>
+      <ul>
+        <li>Never send the secret key in the same message, email thread, or chat as the cipher text.</li>
+        <li>A passphrase like <code style="font-family:var(--font-mono)">BlueTiger!Rain2026</code> is far stronger than a short word.</li>
+        <li>The receiver needs the exact same key — capitalisation and all.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>cipher &amp; seal — encrypted locally, always</span>
+    <span id="clockTag"></span>
+  </div>
+</footer>
+
+<script src="js/utils.js"></script>
+<script src="js/crypto.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="js/encrypt.js"></script>
+</body>
+</html>
