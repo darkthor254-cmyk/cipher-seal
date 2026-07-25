@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Cipher & Seal
 
 A secure browser-based message encryption application that encrypts and decrypts messages locally using the Web Crypto API.
@@ -74,4 +73,4 @@ MIT — see `LICENSE`.
 =======
 # cipher-seal
 A browser-based AES-256 message encryption and decryption web application built with the Web Crypto API.
->>>>>>> 7619ab4f9e39a1adb49f8e91554be83d93093b65
+
